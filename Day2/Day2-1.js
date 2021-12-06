@@ -1,20 +1,20 @@
-const fs = require("fs");
+const fs = require('fs');
 
-fs.readFile("Day2-Commands.txt", "utf8", (err, data) => {
+fs.readFile('Day2-Commands.txt', 'utf8', (err, data) => {
   if (err) throw err;
   let horizontalPosition = 0;
   let depthPosition = 0;
-  const commands = data.split("\n");
+  const commands = data.split('\n');
   commands.forEach((x) => {
-    const command = x.split(" ");
+    const command = x.split(' ');
     switch (command[0]) {
-      case "forward":
+      case 'forward':
         horizontalPosition = horizontalPosition + parseInt(command[1]);
         break;
-      case "down":
+      case 'down':
         depthPosition = depthPosition + parseInt(command[1]);
         break;
-      case "up":
+      case 'up':
         depthPosition = depthPosition - parseInt(command[1]);
         break;
     }

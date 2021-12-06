@@ -1,38 +1,38 @@
-const fs = require("fs");
+const fs = require('fs');
 
-fs.readFile("Day3-Binary.txt", "utf8", (err, data) => {
-  if (err) throw err;
-  let powerConsumption = 0;
-  let gammaRate = "";
-  let epsilonRate = "";
+fs.readFile('Day3-Binary.txt', 'utf8', (err, data) => {
+	if (err) throw err;
+	let powerConsumption = 0;
+	let gammaRate = '';
+	let epsilonRate = '';
 
-  const binaryStrings = data.split("\n");
-  let countOnes = [];
-  for (let index = 0; index < binaryStrings[0].length; index++)
-    countOnes[index] = 0;
+	const binaryStrings = data.split('\n');
+	let countOnes = [];
+	for (let index = 0; index < binaryStrings[0].length; index++)
+		countOnes[index] = 0;
 
-  for (let index = 0; index < binaryStrings.length; index++) {
-    const element = binaryStrings[index];
-    for (let index = 0; index < element.length; index++) {
-      if (element[index] === "1") countOnes[index] = countOnes[index] + 1;
-    }
-  }
+	for (let index = 0; index < binaryStrings.length; index++) {
+		const element = binaryStrings[index];
+		for (let index = 0; index < element.length; index++) {
+			if (element[index] === '1') countOnes[index] = countOnes[index] + 1;
+		}
+	}
 
-  for (let index = 0; index < countOnes.length; index++) {
-    if (countOnes[index] > binaryStrings.length / 2) {
-      gammaRate += "1";
-      epsilonRate += "0";
-    } else {
-      gammaRate += "0";
-      epsilonRate += "1";
-    }
-  }
+	for (let index = 0; index < countOnes.length; index++) {
+		if (countOnes[index] > binaryStrings.length / 2) {
+			gammaRate += '1';
+			epsilonRate += '0';
+		} else {
+			gammaRate += '0';
+			epsilonRate += '1';
+		}
+	}
 
-  //Convert binary to int and multiply them
-  powerConsumption = parseInt(gammaRate, 2) * parseInt(epsilonRate, 2);
-  console.log(`Gamma rate: ${gammaRate}`);
-  console.log(`Epsilon rate: ${epsilonRate}`);
-  console.log(`Power consumption: ${powerConsumption}`);
+	//Convert binary to int and multiply them
+	powerConsumption = parseInt(gammaRate, 2) * parseInt(epsilonRate, 2);
+	console.log(`Gamma rate: ${gammaRate}`);
+	console.log(`Epsilon rate: ${epsilonRate}`);
+	console.log(`Power consumption: ${powerConsumption}`);
 });
 
 /*

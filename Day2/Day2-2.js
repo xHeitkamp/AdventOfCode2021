@@ -1,22 +1,22 @@
-const fs = require("fs");
+const fs = require('fs');
 
-fs.readFile("Day2-Commands.txt", "utf8", (err, data) => {
+fs.readFile('Day2-Commands.txt', 'utf8', (err, data) => {
   if (err) throw err;
   let horizontalPosition = 0;
   let depthPosition = 0;
   let aim = 0;
-  const commands = data.split("\n");
+  const commands = data.split('\n');
   commands.forEach((x) => {
-    const command = x.split(" ");
+    const command = x.split(' ');
     switch (command[0]) {
-      case "forward":
+      case 'forward':
         horizontalPosition = horizontalPosition + parseInt(command[1]);
         depthPosition = depthPosition + aim * parseInt(command[1]);
         break;
-      case "down":
+      case 'down':
         aim = aim + parseInt(command[1]);
         break;
-      case "up":
+      case 'up':
         aim = aim - parseInt(command[1]);
         break;
     }
@@ -37,7 +37,7 @@ up X decreases your aim by X units.
 forward X does two things:
 It increases your horizontal position by X units.
 It increases your depth by your aim multiplied by X.
-Again note that since you're on a submarine, down and up do the opposite of what you might expect: "down" means aiming in the positive direction.
+Again note that since you're on a submarine, down and up do the opposite of what you might expect: 'down' means aiming in the positive direction.
 
 Now, the above example does something different:
 

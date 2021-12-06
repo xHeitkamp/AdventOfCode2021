@@ -1,16 +1,18 @@
 const fs = require('fs');
 
 fs.readFile('Day1-Measurements.txt', 'utf8', (err, data) => {
-    if (err) throw err;
-    let increases = 0;
-    const measurements = data.split('\n').map((item) => parseInt(item));
-    for (let i = 3; i <= measurements.length; i++) {
-        const firstWindow = measurements[i - 3] + measurements[i - 2] + measurements[i - 1];
-        const secondWindow = measurements[i - 2] + measurements[i - 1] + measurements[i];
-        if (secondWindow > firstWindow) increases++;
-    }
+  if (err) throw err;
+  let increases = 0;
+  const measurements = data.split('\n').map((item) => parseInt(item));
+  for (let i = 3; i <= measurements.length; i++) {
+    const firstWindow =
+      measurements[i - 3] + measurements[i - 2] + measurements[i - 1];
+    const secondWindow =
+      measurements[i - 2] + measurements[i - 1] + measurements[i];
+    if (secondWindow > firstWindow) increases++;
+  }
 
-    console.log(`The deapth increases ${increases} times.`)
+  console.log(`The deapth increases ${increases} times.`);
 });
 
 /* Aufgabenbeschreibung

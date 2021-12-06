@@ -1,57 +1,57 @@
-const fs = require("fs");
+const fs = require('fs');
 
-fs.readFile("Day3-Binary.txt", "utf8", (err, data) => {
-  if (err) throw err;
-  let lifesupportRating = 0;
-  let oxygenRating = 0;
-  let co2Rating = 0;
+fs.readFile('Day3-Binary.txt', 'utf8', (err, data) => {
+	if (err) throw err;
+	let lifesupportRating = 0;
+	let oxygenRating = 0;
+	let co2Rating = 0;
 
-  const binaryStrings = data.split("\n");
+	const binaryStrings = data.split('\n');
 
-  let oxygen = filterArray(binaryStrings, 1);
-  let co2 = filterArray(binaryStrings, 0);
+	let oxygen = filterArray(binaryStrings, 1);
+	let co2 = filterArray(binaryStrings, 0);
 
-  oxygenRating = parseInt(oxygen, 2);
-  co2Rating = parseInt(co2, 2);
+	oxygenRating = parseInt(oxygen, 2);
+	co2Rating = parseInt(co2, 2);
 
-  //Convert binary to int and multiply them
-  lifesupportRating = oxygenRating * co2Rating;
-  console.log(`Oxygen rating: ${oxygenRating}`);
-  console.log(`CO2 Rating: ${co2Rating}`);
-  console.log(`Life support Rating: ${lifesupportRating}`);
+	//Convert binary to int and multiply them
+	lifesupportRating = oxygenRating * co2Rating;
+	console.log(`Oxygen rating: ${oxygenRating}`);
+	console.log(`CO2 Rating: ${co2Rating}`);
+	console.log(`Life support Rating: ${lifesupportRating}`);
 });
 
 function filterArray(array, dominant, index) {
-  if (index === undefined) index = 0;
-  let zeros = 0;
-  let ones = 0;
+	if (index === undefined) index = 0;
+	let zeros = 0;
+	let ones = 0;
 
-  for (let step = 0; step < array.length; step++) {
-    if (array[step][index] === "0") zeros += 1;
-    if (array[step][index] === "1") ones += 1;
-  }
+	for (let step = 0; step < array.length; step++) {
+		if (array[step][index] === '0') zeros += 1;
+		if (array[step][index] === '1') ones += 1;
+	}
 
-  let solution;
-  if (dominant === 1) {
-    if (ones >= zeros) {
-      solution = array.filter((thing) => thing[index] === "1");
-    } else {
-      solution = array.filter((thing) => thing[index] === "0");
-    }
-  }
-  if (dominant === 0) {
-    if (zeros <= ones) {
-      solution = array.filter((thing) => thing[index] === "0");
-    } else {
-      solution = array.filter((thing) => thing[index] === "1");
-    }
-  }
+	let solution;
+	if (dominant === 1) {
+		if (ones >= zeros) {
+			solution = array.filter((thing) => thing[index] === '1');
+		} else {
+			solution = array.filter((thing) => thing[index] === '0');
+		}
+	}
+	if (dominant === 0) {
+		if (zeros <= ones) {
+			solution = array.filter((thing) => thing[index] === '0');
+		} else {
+			solution = array.filter((thing) => thing[index] === '1');
+		}
+	}
 
-  if (solution.length > 1)
-    solution = filterArray(solution, dominant, (index += 1));
-  else solution = solution[0];
+	if (solution.length > 1)
+		solution = filterArray(solution, dominant, (index += 1));
+	else solution = solution[0];
 
-  return solution;
+	return solution;
 }
 
 /*
